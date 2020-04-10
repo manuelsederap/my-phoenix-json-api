@@ -1,5 +1,4 @@
 https://github.com/gigalixir/gigalixir-buildpack-clean-cache.git
-elixir_version=1.9.1
-erlang_version=22.0.7
+https://github.com/HashNuke/heroku-buildpack-elixir
 https://github.com/gjaldon/heroku-buildpack-phoenix-static
 https://github.com/gigalixir/gigalixir-buildpack-distillery.git
