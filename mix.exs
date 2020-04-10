@@ -43,7 +43,7 @@ defmodule MyApp.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:bcrypt_elixir, "~> 2.0"},
       {:corsica, "~> 1.0"},
-      {:distillery, "~> 1.0", runtime: false}
+      {:distillery, "~> 2.1", runtime: false}
     ]
   end
 
