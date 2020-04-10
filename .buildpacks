@@ -1,3 +1,2 @@
-elixir_version=1.10.0
 https://github.com/gjaldon/heroku-buildpack-phoenix-static
 https://github.com/gigalixir/gigalixir-buildpack-mix.git
