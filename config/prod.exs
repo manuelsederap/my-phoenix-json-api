@@ -10,55 +10,17 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :my_app, MyAppWeb.Endpoint,
-  url: [host: "${APP_NAME}.gigalixirapp.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  http: [port: {:system, "PORT"}]
+  url: [host: System.get_env("APP_NAME") <> ".gigalixirapp.com", port: 80],
+  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE")
   server: true,
-  secret_key_base: "${SECRET_KEY_BASE}"
-
-config :my_app, MyApp.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  url: "${DATABASE_URL}",
-  database: "",
-  ssl: true,
-  pool_size: 1
+  cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
 config :logger, level: :info
 
-# ## SSL Support
-#
-# To get SSL working, you will need to add the `https` key
-# to the previous section and set your `:url` port to 443:
-#
-#     config :my_app, MyAppWeb.Endpoint,
-#       ...
-#       url: [host: "example.com", port: 443],
-#       https: [
-#         port: 443,
-#         cipher_suite: :strong,
-#         keyfile: System.get_env("SOME_APP_SSL_KEY_PATH"),
-#         certfile: System.get_env("SOME_APP_SSL_CERT_PATH"),
-#         transport_options: [socket_opts: [:inet6]]
-#       ]
-#
-# The `cipher_suite` is set to `:strong` to support only the
-# latest and more secure SSL ciphers. This means old browsers
-# and clients may not be supported. You can set it to
-# `:compatible` for wider support.
-#
-# `:keyfile` and `:certfile` expect an absolute path to the key
-# and cert in disk or a relative path inside priv, for example
-# "priv/ssl/server.key". For all supported SSL configuration
-# options, see https://hexdocs.pm/plug/Plug.SSL.html#configure/1
-#
-# We also recommend setting `force_ssl` in your endpoint, ensuring
-# no data is ever sent via http, always redirecting to https:
-#
-#     config :my_app, MyAppWeb.Endpoint,
-#       force_ssl: [hsts: true]
-#
-# Check `Plug.SSL` for all available options in `force_ssl`.
+config :my_app, MyApp.Repo,
+  url: System.get_env("DATABASE_URL")
+  ssl: true,
+  pool_size: 2
 
-# Finally import the config/prod.secret.exs which loads secrets
-# and configuration from environment variables.
-# import_config "prod.secret.exs"
