@@ -10,9 +10,9 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :my_app, MyAppWeb.Endpoint,
-  http: [port: {:system, "PORT"}]
+  http: [port: {:system, "PORT"}],
   url: [host: System.get_env("APP_NAME") <> ".gigalixirapp.com", port: 80],
-  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE")
+  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
   server: true,
   cache_static_manifest: "priv/static/cache_manifest.json"
 
@@ -20,7 +20,7 @@ config :my_app, MyAppWeb.Endpoint,
 config :logger, level: :info
 
 config :my_app, MyApp.Repo,
-  url: System.get_env("DATABASE_URL")
+  url: System.get_env("DATABASE_URL"),
   ssl: true,
   pool_size: 2
 
